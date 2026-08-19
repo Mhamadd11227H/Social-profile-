@@ -1,1 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mohammed Chakvan — Developer & Designer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+/* =========================
+   ROOT
+========================= */
+
+:root{
+    --bg:#08080b;
+    --panel:#101014;
+    --panel2:#14141a;
+
+    --border:#25252d;
+    --border2:#30303b;
+
+    --white:#f7f7fb;
+    --text:#c7c7d0;
+    --muted:#777782;
+
+    --purple:#a78bfa;
+    --violet:#8b5cf6;
+    --blue:#60a5fa;
+
+    --green:#4ade80;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    top:-280px;
+    right:-180px;
+
+    background:radial-gradient(
+        circle,
+        rgba(139,92,246,.17),
+        transparent 68%
+    );
+
+    filter:blur(55px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    bottom:-250px;
+    left:-200px;
+
+    background:radial-gradient(
+        circle,
+        rgba(96,165,250,.07),
+        transparent 70%
+    );
+
+    filter:blur(60px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+
+/* grid */
+
+.grid-bg{
+    position:fixed;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size:40px 40px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent 80%
+    );
+
+    pointer-events:none;
+    z-index:-3;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(8,8,11,.78);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+    height:68px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    width:39px;
+    height:39px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid var(--border);
+    border-radius:11px;
+
+    font-weight:800;
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.logo span{
+    color:var(--purple);
+}
+
+.logo:hover{
+    background:var(--purple);
+    color:#09090b;
+    border-color:var(--purple);
+    transform:rotate(-6deg);
+}
+
+.logo:hover span{
+    color:#09090b;
+}
+
+.navlinks{
+    display:flex;
+    gap:22px;
+}
+
+.navlinks a{
+    color:var(--muted);
+    font-size:11px;
+    transition:.2s;
+}
+
+.navlinks a:hover{
+    color:white;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:105px 0 90px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:7px 11px;
+
+    border:1px solid rgba(74,222,128,.18);
+    border-radius:100px;
+
+    color:#8ee6a5;
+
+    background:rgba(74,222,128,.045);
+
+    font-family:"Space Mono",monospace;
+    font-size:9px;
+
+    margin-bottom:23px;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+    background:var(--green);
+
+    box-shadow:0 0 10px var(--green);
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+}
+
+.hero h1{
+    max-width:800px;
+
+    font-size:clamp(48px,10vw,86px);
+
+    line-height:.94;
+
+    letter-spacing:-5px;
+
+    margin-bottom:28px;
+}
+
+.gradient{
+    background:
+        linear-gradient(
+            100deg,
+            #ddd6fe,
+            #a78bfa 45%,
+            #60a5fa
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-text{
+    max-width:570px;
+
+    color:var(--muted);
+
+    font-size:14px;
+    line-height:1.9;
+
+    margin-bottom:28px;
+}
+
+.hero-text b{
+    color:#dedee6;
+    font-weight:500;
+}
+
+
+/* buttons */
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.btn{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+
+    padding:12px 17px;
+
+    border-radius:10px;
+
+    font-size:11px;
+    font-weight:600;
+
+    transition:.3s;
+
+    overflow:hidden;
+}
+
+.btn-main{
+    color:#08080b;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ddd8ea
+        );
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25);
+}
+
+.btn-main:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 35px rgba(167,139,250,.15);
+}
+
+.btn-dark{
+    color:#aaaab5;
+
+    border:1px solid var(--border);
+
+    background:#0d0d11;
+}
+
+.btn-dark:hover{
+    color:white;
+
+    border-color:
+        rgba(167,139,250,.4);
+
+    background:
+        rgba(167,139,250,.05);
+
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   TERMINAL
+========================= */
+
+.terminal{
+    margin-top:65px;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,26,.95),
+            rgba(11,11,15,.96)
+        );
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+}
+
+.terminal-top{
+    height:39px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 14px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.circles{
+    display:flex;
+    gap:6px;
+}
+
+.circle{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#393941;
+}
+
+.terminal-title{
+    margin:auto;
+
+    color:#5f5f69;
+
+    font-family:"Space Mono",monospace;
+    font-size:8px;
+}
+
+.code{
+    padding:22px;
+
+    font-family:"Space Mono",monospace;
+    font-size:10px;
+
+    line-height:2;
+}
+
+.purple{color:#c4b5fd}
+.blue{color:#93c5fd}
+.green{color:#86efac}
+.gray{color:#686874}
+.white{color:#eeeef3}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    padding:65px 0;
+}
+
+.section-label{
+    color:var(--purple);
+
+    font-family:"Space Mono",monospace;
+
+    font-size:9px;
+
+    margin-bottom:8px;
+}
+
+.section-title{
+    font-size:28px;
+
+    letter-spacing:-1.5px;
+
+    margin-bottom:7px;
+}
+
+.section-text{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:13px;
+}
+
+.about-card{
+    padding:25px;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #131318,
+            #0e0e12
+        );
+
+    transition:.3s;
+}
+
+.about-card:hover{
+    border-color:
+        rgba(167,139,250,.28);
+
+    transform:translateY(-3px);
+}
+
+.about-card p{
+    color:#858590;
+
+    font-size:12px;
+
+    line-height:1.9;
+}
+
+.mini-title{
+    color:#eeeef4;
+
+    font-size:12px;
+
+    margin-bottom:14px;
+}
+
+.stats{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+}
+
+.stat{
+    padding:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.018);
+}
+
+.stat strong{
+    display:block;
+
+    font-size:21px;
+
+    color:white;
+}
+
+.stat span{
+    color:#666671;
+
+    font-size:9px;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+}
+
+.skill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 13px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    color:#aaaab5;
+
+    background:
+        rgba(255,255,255,.02);
+
+    font-size:10px;
+
+    transition:.25s;
+}
+
+.skill i{
+    color:var(--purple);
+}
+
+.skill:hover{
+    color:white;
+
+    border-color:
+        rgba(167,139,250,.35);
+
+    background:
+        rgba(167,139,250,.06);
+
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+.project{
+    min-height:205px;
+
+    padding:22px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #141419,
+            #0e0e12
+        );
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.project::before{
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    top:-90px;
+    right:-70px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,92,246,.18),
+            transparent 70%
+        );
+
+    transition:.4s;
+}
+
+.project:hover{
+    transform:translateY(-6px);
+
+    border-color:
+        rgba(167,139,250,.32);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.22);
+}
+
+.project:hover::before{
+    transform:scale(1.5);
+}
+
+.project-icon{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    color:var(--purple);
+
+    border:1px solid
+        rgba(167,139,250,.14);
+
+    background:
+        rgba(167,139,250,.065);
+}
+
+.project h3{
+    font-size:17px;
+
+    margin-bottom:3px;
+}
+
+.project p{
+    color:#696974;
+
+    font-size:10px;
+}
+
+.project-arrow{
+    position:absolute;
+
+    right:20px;
+    bottom:20px;
+
+    color:#44444e;
+
+    transition:.3s;
+}
+
+.project:hover .project-arrow{
+    color:var(--purple);
+
+    transform:translate(3px,-3px);
+}
+
+
+/* =========================
+   SOCIAL
+========================= */
+
+.socials{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+}
+
+.social{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:13px;
+
+    background:#111116;
+
+    transition:.3s;
+}
+
+.social:hover{
+    transform:translateY(-4px);
+
+    border-color:
+        rgba(167,139,250,.3);
+
+    background:#15151b;
+}
+
+.social-icon{
+    width:37px;
+    height:37px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    color:var(--purple);
+
+    background:
+        rgba(167,139,250,.07);
+}
+
+.social strong{
+    display:block;
+
+    font-size:11px;
+}
+
+.social small{
+    color:#666671;
+
+    font-size:9px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    padding:50px 20px;
+
+    text-align:center;
+
+    border:1px solid
+        rgba(167,139,250,.15);
+
+    border-radius:19px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(139,92,246,.13),
+            transparent 60%
+        ),
+        #111116;
+}
+
+.contact h2{
+    font-size:32px;
+
+    letter-spacing:-1.8px;
+
+    margin-bottom:8px;
+}
+
+.contact p{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-bottom:23px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:30px 0 40px;
+
+    display:flex;
+    justify-content:space-between;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+
+    color:#555560;
+
+    font-family:"Space Mono",monospace;
+
+    font-size:8px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .container{
+        width:88%;
+    }
+
+    .navlinks{
+        gap:13px;
+    }
+
+    .navlinks a{
+        font-size:9px;
+    }
+
+    .hero{
+        padding:85px 0 65px;
+    }
+
+    .hero h1{
+        font-size:52px;
+        letter-spacing:-3.5px;
+    }
+
+    .hero-text{
+        font-size:12px;
+    }
+
+    .terminal{
+        margin-top:45px;
+    }
+
+    .code{
+        font-size:8px;
+        padding:17px;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .socials{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:50px 0;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:8px;
+        text-align:center;
+    }
+}
+
+@media(max-width:380px){
+
+    .navlinks{
+        gap:9px;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="grid-bg"></div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav>
+
+<div class="container nav">
+
+<a href="#" class="logo">
+M<span>.</span>
+</a>
+
+<div class="navlinks">
+
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+<div class="container">
+
+<div class="status">
+<span class="dot"></span>
+AVAILABLE FOR PROJECTS
+</div>
+
+
+<h1>
+
+Building
+<br>
+
+<span class="gradient">
+digital things.
+</span>
+
+</h1>
+
+
+<p class="hero-text">
+
+I'm <b>Mohammed Chakvan</b> — a developer and designer
+who enjoys creating Discord bots, websites and
+clean digital experiences.
+
+</p>
+
+
+<div class="buttons">
+
+<a href="#work" class="btn btn-main">
+
+View My Work
+
+<i class="fa-solid fa-arrow-down"></i>
+
+</a>
+
+
+<a href="#contact" class="btn btn-dark">
+
+Let's Talk
+
+<i class="fa-regular fa-paper-plane"></i>
+
+</a>
+
+</div>
+
+
+
+<!-- TERMINAL -->
+
+<div class="terminal">
+
+<div class="terminal-top">
+
+<div class="circles">
+
+<span class="circle"></span>
+<span class="circle"></span>
+<span class="circle"></span>
+
+</div>
+
+<div class="terminal-title">
+developer.js
+</div>
+
+</div>
+
+
+<div class="code">
+
+<span class="purple">const</span>
+<span class="white"> developer</span>
+<span class="purple"> =</span>
+<span class="white"> {</span>
+<br>
+
+&nbsp;&nbsp;
+<span class="blue">name:</span>
+<span class="green"> "Mohammed Chakvan"</span>,
+<br>
+
+&nbsp;&nbsp;
+<span class="blue">role:</span>
+<span class="green"> "Developer & Designer"</span>,
+<br>
+
+&nbsp;&nbsp;
+<span class="blue">focus:</span>
+<span class="green"> "Creative Systems"</span>,
+<br>
+
+&nbsp;&nbsp;
+<span class="blue">coffee:</span>
+<span class="green"> true</span>
+<br>
+
+<span class="white">};</span>
+
+<br><br>
+
+<span class="gray">
+// turning ideas into interfaces.
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="section-label">
+01 — ABOUT
+</div>
+
+<h2 class="section-title">
+A little about me.
+</h2>
+
+<p class="section-text">
+Developer brain. Designer heart.
+</p>
+
+
+<div class="about">
+
+<div class="about-card">
+
+<p>
+
+I like building things that are not only
+functional, but also look good.
+
+From Discord bots and systems to websites
+and visual designs, I enjoy taking an idea
+and turning it into something real.
+
+</p>
+
+</div>
+
+
+<div class="about-card">
+
+<div class="mini-title">
+Quick stats
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong>01</strong>
+<span>Developer</span>
+</div>
+
+<div class="stat">
+<strong>02</strong>
+<span>Designer</span>
+</div>
+
+<div class="stat">
+<strong>∞</strong>
+<span>Ideas</span>
+</div>
+
+<div class="stat">
+<strong>24/7</strong>
+<span>Learning</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section id="skills">
+
+<div class="container">
+
+<div class="section-label">
+02 — SKILLS
+</div>
+
+<h2 class="section-title">
+Things I work with.
+</h2>
+
+<p class="section-text">
+A mix of code, design and creativity.
+</p>
+
+
+<div class="skills">
+
+<div class="skill">
+<i class="fa-solid fa-code"></i>
+Development
+</div>
+
+<div class="skill">
+<i class="fa-brands fa-discord"></i>
+Discord Bots
+</div>
+
+<div class="skill">
+<i class="fa-solid fa-palette"></i>
+UI Design
+</div>
+
+<div class="skill">
+<i class="fa-solid fa-globe"></i>
+Web Design
+</div>
+
+<div class="skill">
+<i class="fa-solid fa-pen-nib"></i>
+Graphic Design
+</div>
+
+<div class="skill">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+Creative Systems
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     WORK
+========================= -->
+
+<section id="work">
+
+<div class="container">
+
+<div class="section-label">
+03 — SELECTED WORK
+</div>
+
+<h2 class="section-title">
+Things I've built.
+</h2>
+
+<p class="section-text">
+A few projects from my creative lab.
+</p>
+
+
+<div class="projects">
+
+
+<!-- ZERO -->
+
+<div class="project">
+
+<div class="project-icon">
+<i class="fa-brands fa-discord"></i>
+</div>
+
+<div>
+
+<h3>
+ZERO GAME
+</h3>
+
+<p>
+Discord Bot • Systems • Economy
+</p>
+
+</div>
+
+<div class="project-arrow">
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</div>
+
+</div>
+
+
+
+<!-- WEBSITE -->
+
+<div class="project">
+
+<div class="project-icon">
+<i class="fa-solid fa-globe"></i>
+</div>
+
+<div>
+
+<h3>
+Web Design
+</h3>
+
+<p>
+Modern Websites • UI • UX
+</p>
+
+</div>
+
+<div class="project-arrow">
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</div>
+
+</div>
+
+
+
+<!-- DESIGN -->
+
+<div class="project">
+
+<div class="project-icon">
+<i class="fa-solid fa-pen-nib"></i>
+</div>
+
+<div>
+
+<h3>
+Visual Design
+</h3>
+
+<p>
+Branding • Graphics • Social Media
+</p>
+
+</div>
+
+<div class="project-arrow">
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</div>
+
+</div>
+
+
+
+<!-- FUTURE -->
+
+<div class="project">
+
+<div class="project-icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+
+<div>
+
+<h3>
+More Coming
+</h3>
+
+<p>
+New ideas are loading...
+</p>
+
+</div>
+
+<div class="project-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section>
+
+<div class="container">
+
+<div class="section-label">
+04 — CONNECT
+</div>
+
+<h2 class="section-title">
+Find me online.
+</h2>
+
+<p class="section-text">
+Let's connect somewhere.
+</p>
+
+
+<div class="socials">
+
+
+<a
+href="https://discord.gg/xgpy7YPMd3"
+target="_blank"
+class="social">
+
+<div class="social-icon">
+<i class="fa-brands fa-discord"></i>
+</div>
+
+<div>
+
+<strong>Discord</strong>
+<small>Server & community</small>
+
+</div>
+
+</a>
+
+
+
+<a
+href="https://www.instagram.com/1.h4mk.o/"
+target="_blank"
+class="social">
+
+<div class="social-icon">
+<i class="fa-brands fa-instagram"></i>
+</div>
+
+<div>
+
+<strong>Instagram</strong>
+<small>Design showcase</small>
+
+</div>
+
+</a>
+
+
+
+<a
+href="https://www.tiktok.com/@18.h4mk0"
+target="_blank"
+class="social">
+
+<div class="social-icon">
+<i class="fa-brands fa-tiktok"></i>
+</div>
+
+<div>
+
+<strong>TikTok</strong>
+<small>Creative content</small>
+
+</div>
+
+</a>
+
+
+
+<a
+href="https://github.com/Mhamadd11227H"
+target="_blank"
+class="social">
+
+<div class="social-icon">
+<i class="fa-brands fa-github"></i>
+</div>
+
+<div>
+
+<strong>GitHub</strong>
+<small>Code & projects</small>
+
+</div>
+
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="contact">
+
+<h2>
+Have an idea?
+</h2>
+
+<p>
+Let's turn it into something beautiful.
+</p>
+
+
+<div class="buttons" style="justify-content:center;">
+
+<a
+href="mailto:mhamadduski870@gmail.com"
+class="btn btn-main">
+
+Start a project
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</a>
+
+<a
+href="tel:07508863907"
+class="btn btn-dark">
+
+Call Me
+
+<i class="fa-solid fa-phone"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="container">
+
+<footer>
+
+<span>
+© 2026 Mohammed Chakvan
+</span>
+
+<span>
+Developer × Designer
+</span>
+
+</footer>
+
+</div>
+
+
+</body>
+</html>
