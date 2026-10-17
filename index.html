@@ -1041,11 +1041,11 @@ footer{
 .lv-btns{display:flex;gap:8px;flex-wrap:wrap}
 .lv-btns .btn{font-family:inherit;font-size:15px;padding:8px 16px;cursor:pointer}
 .lv-note{color:var(--muted);font-size:14px;line-height:1.9}
-.lv-modal{position:fixed;inset:0;z-index:300;background:rgba(5,3,12,.92);display:none;align-items:center;justify-content:center;padding:14px;overflow:auto;direction:rtl;font-family:'Noto Naskh Arabic',Inter,sans-serif}
+.lv-modal{position:fixed;inset:0;z-index:300;background:rgba(5,3,12,.92);display:none;align-items:flex-start;justify-content:center;padding:10px;overflow:auto;direction:rtl;font-family:'Noto Naskh Arabic',Inter,sans-serif}
 .lv-modal.on{display:flex}
-.lv-sheet{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;width:100%;max-width:380px}
+.lv-sheet{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;width:100%;max-width:440px;margin:auto}
 .lv-x{align-self:flex-start;background:var(--panel);color:var(--white);border:1px solid var(--border2);border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer}
-.lv-phone{width:min(300px,76vw);height:min(560px,64vh);border:10px solid #1b1b26;border-radius:38px;overflow:hidden;background:#000;box-shadow:0 0 50px rgba(255,158,196,.25)}
+.lv-phone{width:min(380px,92vw);height:min(720px,76vh);border:9px solid #1b1b26;border-radius:38px;overflow:hidden;background:#000;box-shadow:0 0 50px rgba(255,158,196,.25)}
 .lv-phone iframe{width:100%;height:100%;border:0;display:block}
 .lv-empty{height:100%;display:grid;place-items:center;text-align:center;padding:20px;color:var(--text);font-size:17px;line-height:2}
 .lv-info{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -1073,6 +1073,15 @@ footer{
 .lv-phone{position:relative}
 .lv-phone:before{content:"";position:absolute;top:0;left:50%;translate:-50% 0;width:86px;height:16px;background:#1b1b26;border-radius:0 0 12px 12px;z-index:2;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.lv *{animation:none!important}}
+
+/* --- LOVE: قفل و بەردەستی --- */
+.lv-card.locked .lv-ph,.lv-card.locked h3,.lv-card.locked p,.lv-card.locked .lv-chips,.lv-card.locked .lv-price{filter:grayscale(.7);opacity:.45}
+.lv-card.locked .lv-btns .btn{opacity:.4;pointer-events:none}
+.lv-lock{position:absolute;inset:0;z-index:3;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(8,5,16,.55);backdrop-filter:blur(2px);pointer-events:none}
+.lv-lock svg{width:54px;height:54px;color:#ff9ec4;filter:drop-shadow(0 0 14px rgba(255,158,196,.6))}
+.lv-lock b{background:rgba(0,0,0,.6);border:1px solid rgba(255,158,196,.5);color:#ffd3e4;border-radius:30px;padding:4px 18px;font-size:16px}
+.lv-avail{position:absolute;top:22px;inset-inline-start:22px;z-index:2;background:rgba(34,197,94,.18);border:1px solid rgba(34,197,94,.6);color:#86efac;font-size:13px;font-weight:700;padding:0 12px;border-radius:30px}
+.lv-avail:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-inline-end:6px}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -1320,12 +1329,12 @@ Quick stats
 <div class="lv-fx" aria-hidden="true"><span style="left:6%;animation-delay:0s">♡</span><span style="left:20%;animation-delay:3s;font-size:12px">♡</span><span style="left:38%;animation-delay:6s">✦</span><span style="left:55%;animation-delay:1.5s;font-size:12px">♡</span><span style="left:72%;animation-delay:4.5s">♡</span><span style="left:90%;animation-delay:7.5s;font-size:12px">✦</span></div>
 <div class="container">
 <div class="lv-label">♡ ماڵپەڕێن ئەڤینێ</div>
-<h2 class="lv-title">مالپەڕەکێ ئەڤینێ بۆ خوشتڤیا خو </h2>
-<p class="lv-text">دیارییەکا جودا و نەئاسایی: مالپەڕەکێ تایبەت ب ناڤ و وێنە و نامە و گۆرانیا تە. نموونەیان ب مۆبایلا خۆ ببینە و ئەوێ تە دڤێت هەلبژێرە.</p>
+<h2 class="lv-title">ماڵپەڕەکا ئەڤینێ بۆ خوشتڤیا خۆ</h2>
+<p class="lv-text">دیارییەکا جودا و نەئاسایی: ماڵپەڕەکا تایبەت ب ناڤ و وێنە و نامە و گۆرانیا تە. نموونەیان ب مۆبایلا خۆ ببینە و ئەوێ دڤێت هەلبژێرە.</p>
 <div class="lv-steps reveal">
 <div><b>١</b>نموونەیەکێ هەلبژێرە</div>
 <div><b>٢</b>ناڤ و وێنە و پەیامان بۆ من بنێرە</div>
-<div><b>٣</b>مالپەڕ ئامادە دکەم و ب لینک بۆ تە دنێرم</div>
+<div><b>٣</b>ماڵپەڕ ئامادە دکەم و ب لینک بۆ تە دنێرم</div>
 </div>
 <div class="lv-inc reveal"><span>ئەلبوما وێنەیان</span><span>گۆرانی</span><span>نامە و پەیام</span><span>QR یا دلی</span></div>
 <div class="lv-grid reveal" id="lvGrid"></div>
@@ -1808,7 +1817,7 @@ const PROJECTS={
 <div class="lv-top"><button class="lv-x" id="lvX" aria-label="دابخە">✕</button><span id="lvC"></span><button class="lv-x" id="lvPv" aria-label="پێشتر">›</button><button class="lv-x" id="lvNx" aria-label="پاشی">‹</button></div>
 <div class="lv-phone" id="lvPhone"></div>
 <div class="lv-info"><h3 id="lvT"></h3><div class="lv-price" id="lvP"></div>
-<div class="lv-btns"><a class="btn btn-main" id="lvO" target="_blank" rel="noopener">داخوازکرن</a><a class="btn btn-dark" id="lvN" target="_blank" rel="noopener">ل پەنجەرەکا نوی ڤەکە</a></div></div>
+<div class="lv-btns"><a class="btn btn-main" id="lvO" target="_blank" rel="noopener">داخوازکرن</a></div></div>
 </div></div>
 <script>
 /* ═══ ڕێکخستنا ماڵپەڕێن ئەڤینێ — ل ڤێرێ دەستکاری بکە ═══ */
@@ -1818,17 +1827,18 @@ const LV={
     title = ناڤ | desc = شرۆڤە | price = نرخ (وەک "٢٥٬٠٠٠ دینار") | url = لینکا نموونەیێ
     badge = نیشانەیەکا بچووک (ئارەزوومەندانە، وەک "پێشنیار") | feat = تایبەتمەندیێن کورت */
  samples:[
-  {badge:"پێشنیار",title:"نموونە ١ — ئاسمانا ئەڤینێ",desc:"ئاسمانەکا ب ستێران، نامە، ئەلبوما وێنەیان و گۆرانی.",feat:["ستێر","نامە","ئەلبوم"],price:"20.000",url:"https://mhamadd11227h.github.io/Vip-love/"},
-  {badge:"",title:"نموونە ٢ — باخچەیا گولان",desc:"باخچەیەکا شرین ب گولان و پەیامێن ئەڤینێ.",feat:["گول","پەیام","گۆرانی"],price:"",url:""},
+  {badge:"پێشنیار",title:"نموونە ١ — باخچەیا گولان",desc:"باخچەیەکا شرین ب گولان و پەیامێن ئەڤینێ.",feat:["گول","پەیام","گۆرانی"],price:"20.000",u:"aHR0cHM6Ly9taGFtYWRkMTEyMjdoLmdpdGh1Yi5pby9WaXAtbG92ZS8="},
+  {badge:"",title:"نموونە ٢ — ئاسمانا ئەڤینێ",desc:"ئاسمانەکا ب ستێران، نامە، ئەلبوما وێنەیان و گۆرانی.",feat:["ستێر","نامە","ئەلبوم"],price:"",url:""},
   {badge:"",title:"نموونە ٣ — نامەیا ئایندێ",desc:"نامەیەکا تایبەت ب ژمێرەرا دەمی و پەیامێن ڕۆژانە.",feat:["ژمێرەر","نامە","ڕۆژانە"],price:"",url:""}
  ]
 };
+LV.samples.forEach(x=>{x.url=x.u?atob(x.u):'';delete x.u});
 (function(){
  const g=document.getElementById('lvGrid'),M=document.getElementById('lvModal'),PH=document.getElementById('lvPhone'),n=LV.samples.length;
  let cur=0;
  const mk=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e};
  const priceTxt=p=>p?('نرخ: '+p):'نرخ: ب پەیوەندیێ';
- const orderUrl=t=>LV.whatsapp?'https://wa.me/'+LV.whatsapp+'?text='+encodeURIComponent('سلاڤ، دڤێت ماڵپەرا «'+t+'» داخواز بکەم'):'#contact';
+ const orderUrl=t=>LV.whatsapp?'https://wa.me/'+LV.whatsapp+'?text='+encodeURIComponent('سلاڤ، دڤێت ماڵپەڕا «'+t+'» داخواز بکەم'):'#contact';
  function open(i){
   cur=(i+n)%n;const s=LV.samples[cur];
   PH.replaceChildren();
@@ -1838,18 +1848,27 @@ const LV={
   document.getElementById('lvP').textContent=priceTxt(s.price);
   document.getElementById('lvC').textContent=(cur+1)+' / '+n;
   document.getElementById('lvO').href=orderUrl(s.title);
-  const l=document.getElementById('lvN');l.href=s.url||'#';l.style.display=s.url?'':'none';
   M.classList.add('on');M.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
  }
  function close(){M.classList.remove('on');M.setAttribute('aria-hidden','true');PH.replaceChildren();document.body.style.overflow=''}
  LV.samples.forEach((s,i)=>{
   const c=mk('div','lv-card'),ph=mk('div','lv-ph');ph.appendChild(mk('span','','♡'));
-  if(s.badge)c.appendChild(mk('div','lv-badge',s.badge));
+  if(s.url)c.appendChild(mk('div','lv-avail','بەردەستە'));
+  else c.classList.add('locked');
+  if(s.badge&&s.url)c.appendChild(mk('div','lv-badge',s.badge));
   const ch=mk('div','lv-chips');(s.feat||[]).forEach(f=>ch.appendChild(mk('span','',f)));
   const b=mk('div','lv-btns'),v=mk('button','btn btn-main','ب مۆبایلێ ببینە'),o=mk('a','btn btn-dark','داخوازکرن');
   v.type='button';v.onclick=()=>open(i);o.href=orderUrl(s.title);o.target='_blank';o.rel='noopener';
   b.append(v,o);
   c.append(ph,mk('h3','',s.title),mk('p','',s.desc),ch,mk('div','lv-price',priceTxt(s.price)),b);
+  if(!s.url){
+   const lk=mk('div','lv-lock');
+   lk.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+   lk.appendChild(mk('b','','بەردەست نینە'));
+   c.appendChild(lk);
+   v.disabled=true;v.removeAttribute('href');v.onclick=null;
+   o.removeAttribute('href');o.removeAttribute('target');
+  }
   g.appendChild(c);
  });
  document.getElementById('lvX').onclick=close;
