@@ -1082,6 +1082,90 @@ footer{
 .lv-lock b{background:rgba(0,0,0,.6);border:1px solid rgba(255,158,196,.5);color:#ffd3e4;border-radius:30px;padding:4px 18px;font-size:16px}
 .lv-avail{position:absolute;top:22px;inset-inline-start:22px;z-index:2;background:rgba(34,197,94,.18);border:1px solid rgba(34,197,94,.6);color:#86efac;font-size:13px;font-weight:700;padding:0 12px;border-radius:30px}
 .lv-avail:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-inline-end:6px}
+
+/* ===== FEATURED CLIENT PROJECT: ZAHA ===== */
+.project.featured{grid-column:1/-1;min-height:190px;border-color:rgba(230,201,139,.28);background:radial-gradient(circle at 85% 0%,rgba(230,201,139,.13),transparent 55%),linear-gradient(145deg,#141419,#0e0e12)}
+.project.featured::before{background:radial-gradient(circle,rgba(230,201,139,.2),transparent 70%)}
+.project.featured:hover{border-color:rgba(230,201,139,.55);box-shadow:0 20px 45px rgba(0,0,0,.25),0 0 40px rgba(230,201,139,.12)}
+.project.featured .project-icon{width:54px;height:54px;border-color:rgba(230,201,139,.3);background:rgba(230,201,139,.08)}
+.project.featured .project-icon img{height:30px;width:auto;display:block}
+.project.featured h3{font-size:22px;letter-spacing:.14em}
+.project.featured .project-arrow{color:#e6c98b}
+.proj-badge{position:absolute;top:18px;right:18px;z-index:1;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.14em;color:#e6c98b;border:1px solid rgba(230,201,139,.35);background:rgba(230,201,139,.07);padding:4px 10px;border-radius:99px}
+.cover.zaha{background:radial-gradient(circle at 20% 0%,rgba(230,201,139,.4),transparent 60%),radial-gradient(circle at 90% 100%,rgba(36,120,98,.55),transparent 55%),#0f1f1a}
+.cover.zaha h3{letter-spacing:.22em}
+.cover .m-logo{position:absolute;right:22px;top:20px;height:56px;width:auto;opacity:.9}
+
+/* =====================================================
+   CALM MOTION: slow, soft, relaxing animations
+===================================================== */
+:root{--ease:cubic-bezier(.22,.8,.24,1)}
+
+/* page fades in gently */
+body{animation:pageIn 1.2s ease both}
+@keyframes pageIn{from{opacity:0}}
+
+/* ambient glows drift slowly */
+body::before{animation:ambA 26s ease-in-out infinite alternate}
+body::after{animation:ambB 30s ease-in-out infinite alternate}
+@keyframes ambA{to{transform:translate(-60px,50px) scale(1.15)}}
+@keyframes ambB{to{transform:translate(70px,-40px) scale(1.2)}}
+
+/* hero: soft focus-in, one thing after another */
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.hero .status,.hero h1,.hero-text,.hero .buttons,.terminal{animation-duration:1.4s;animation-timing-function:var(--ease)}
+.hero .status{animation-delay:.1s}
+.hero h1{animation-delay:.3s}
+.hero-text{animation-delay:.55s}
+.hero .buttons{animation-delay:.8s}
+.terminal{animation-delay:1.05s}
+
+/* scroll reveal: slow fade, float up, un-blur */
+.reveal{filter:blur(5px);transition:opacity 1.2s ease,transform 1.3s var(--ease),filter 1.2s ease}
+.reveal.in{filter:blur(0)}
+
+/* grids: children appear one by one */
+.projects.reveal,.socials.reveal,.skills.reveal,.lv-grid.reveal,.lv-steps.reveal,.lv-inc.reveal{opacity:1;transform:none;filter:none;transition:none}
+.reveal:not(.in)>.project,.reveal:not(.in)>.social,.reveal:not(.in)>.skill,.reveal:not(.in)>.lv-card,.reveal:not(.in)>.lv-steps div,.reveal:not(.in)>span{opacity:0}
+.reveal.in>.project,.reveal.in>.social,.reveal.in>.skill,.reveal.in>.lv-card,.reveal.in>div,.reveal.in>span{animation:calmIn 1.2s var(--ease) backwards;animation-delay:calc(var(--i,0)*130ms)}
+@keyframes calmIn{from{opacity:0;transform:translateY(26px) scale(.97);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+.reveal.in>:nth-child(1){--i:0}
+.reveal.in>:nth-child(2){--i:1}
+.reveal.in>:nth-child(3){--i:2}
+.reveal.in>:nth-child(4){--i:3}
+.reveal.in>:nth-child(5){--i:4}
+.reveal.in>:nth-child(6){--i:5}
+.reveal.in>:nth-child(7){--i:6}
+.reveal.in>:nth-child(8){--i:7}
+
+/* hovers: slower, softer, smaller lift */
+.project,.about-card,.social,.stat,.skill,.lv-card,.btn,.logo,.pill{transition-duration:.65s;transition-timing-function:var(--ease)}
+.project:hover{transform:translateY(-4px)}
+.about-card:hover,.social:hover{transform:translateY(-3px)}
+.skill:hover{transform:translateY(-2px)}
+.btn-main:hover,.btn-dark:hover{transform:translateY(-2px)}
+.btn:active,.project:active,.social:active{transform:scale(.98);transition-duration:.2s}
+.project-icon,.social-icon,.project-arrow{transition-duration:.6s;transition-timing-function:var(--ease)}
+
+/* nav links: underline glides in */
+.navlinks a{position:relative;padding-bottom:3px}
+.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.navlinks a{transition:color .5s ease}
+
+/* popups: soft fade + slow rise */
+.modal.open,.lv-modal.on{animation:fadeBg .55s ease both}
+@keyframes fadeBg{from{opacity:0}}
+.sheet{animation-duration:.8s;animation-timing-function:var(--ease)}
+.lv-sheet{animation:sheet .8s var(--ease) both}
+
+/* scroll progress line */
+#calmProg{position:fixed;top:0;left:0;height:2px;width:100%;z-index:400;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#a78bfa,#60a5fa,#ff9ec4);box-shadow:0 0 12px rgba(167,139,250,.6);pointer-events:none}
+
+@media(prefers-reduced-motion:reduce){
+ body,body::before,body::after{animation:none!important}
+ .reveal,.reveal:not(.in)>*{opacity:1!important;transform:none!important;filter:none!important}
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -1431,6 +1515,19 @@ A few projects from my creative lab.
 <div class="projects reveal">
 
 
+<!-- ZAHA (featured client project) -->
+
+<div class="project featured" data-project="zaha" tabindex="0" role="button">
+  <span class="proj-badge">FEATURED · CLIENT WEBSITE</span>
+  <div class="project-icon"><img src="zaha-logo.png" alt=""></div>
+  <div>
+    <h3>ZAHA</h3>
+    <p>Perfume &amp; Care • E-commerce • WhatsApp Orders</p>
+  </div>
+  <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+</div>
+
+
 <!-- ZERO -->
 
 <div class="project" data-project="zero" tabindex="0" role="button">
@@ -1718,6 +1815,11 @@ Developer × Designer
 /* ===== EDIT YOUR PROJECTS HERE =====
    images: put your screenshot links or file names, e.g. ["shot1.png","shot2.png"] */
 const PROJECTS={
+ zaha:{title:"ZAHA",cover:"zaha",logo:"zaha-logo.png",icon:"",
+  desc:"A luxury online perfume store built for ZAHA Perfume & Care, with an elegant dark-green and gold look, live product search and one-tap ordering on WhatsApp. Delivers across Iraq and the Kurdistan Region.",
+  tags:["Client project","HTML","CSS","JavaScript","E-commerce","Branding"],
+  feat:["Premium design that matches the brand identity","Live search and product detail pages","One-tap WhatsApp ordering","Smooth animations, fast on every phone"],
+  images:[],hideGallery:true,link:"",linkText:"Visit website"},
  zero:{title:"ZERO GAME",icon:"fa-brands fa-discord",
   desc:"A Discord game bot with an economy system. Members earn coins, compete and keep the server active.",
   tags:["Discord.js","Economy","Systems","Games"],
@@ -1736,7 +1838,11 @@ const PROJECTS={
  const $=id=>document.getElementById(id),modal=$('modal');
  function open(k){
   const p=PROJECTS[k];if(!p)return;
-  $('m-title').textContent=p.title;$('m-icon').className=p.icon;$('m-desc').textContent=p.desc;
+  $('m-title').textContent=p.title;$('m-icon').innerHTML='';$('m-icon').className=p.icon;$('m-desc').textContent=p.desc;
+  document.querySelector('#modal .cover').classList.toggle('zaha',p.cover==='zaha');
+  const ol=document.querySelector('#modal .cover .m-logo');if(ol)ol.remove();
+  if(p.logo){const im=document.createElement('img');im.className='m-logo';im.alt='';im.src=p.logo;document.querySelector('#modal .cover').appendChild(im)}
+  $('m-gal').style.display=p.hideGallery?'none':'';$('m-gal').previousElementSibling.style.display=p.hideGallery?'none':'';
   $('m-tags').innerHTML=p.tags.map(t=>'<span>'+t+'</span>').join('');
   $('m-feat').innerHTML=p.feat.map(t=>'<li>'+t+'</li>').join('');
   const n=Math.max(3,p.images.length);let g='';
@@ -1775,7 +1881,7 @@ const PROJECTS={
    const [node,full]=nodes[a];b++;node.nodeValue=full.slice(0,b);node.parentNode.insertBefore(caret,node.nextSibling);
    if(b>=full.length){a++;b=0}
    setTimeout(tick,22);
-  },1100);
+  },1700);
  }
 })();
 </script>
@@ -1906,6 +2012,15 @@ LV.samples.forEach(x=>{x.url=x.u?atob(x.u):(x.url||'');delete x.u});
   if(e.key==='ArrowLeft')open(cur+1);
   if(e.key==='ArrowRight')open(cur-1);
  });
+})();
+</script>
+<script>
+/* scroll progress line */
+(function(){
+ var b=document.createElement('div');b.id='calmProg';document.body.appendChild(b);
+ var t=false;
+ function u(){t=false;var h=document.documentElement.scrollHeight-innerHeight;b.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'}
+ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u();
 })();
 </script>
 </body>
