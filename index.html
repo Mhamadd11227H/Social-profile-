@@ -171,7 +171,7 @@ nav{
 
     background:rgba(8,8,11,.78);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(10px);
 
     border-bottom:
         1px solid rgba(255,255,255,.06);
@@ -1102,17 +1102,18 @@ footer{
 :root{--ease:cubic-bezier(.22,.8,.24,1)}
 
 /* page fades in gently */
-body{animation:pageIn 1.2s ease both}
 @keyframes pageIn{from{opacity:0}}
 
 /* ambient glows drift slowly */
-body::before{animation:ambA 26s ease-in-out infinite alternate}
-body::after{animation:ambB 30s ease-in-out infinite alternate}
+body::before,body::after{filter:none!important;animation:none!important}
+.gradient,.lv-title{animation:none!important}
+.lv-fx span:nth-child(n+4){display:none}
+.hero .status,.hero h1,.hero-text,.hero .buttons,.terminal,.reveal.in>*{will-change:auto}
 @keyframes ambA{to{transform:translate(-60px,50px) scale(1.15)}}
 @keyframes ambB{to{transform:translate(70px,-40px) scale(1.2)}}
 
 /* hero: soft focus-in, one thing after another */
-@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .hero .status,.hero h1,.hero-text,.hero .buttons,.terminal{animation-duration:1.4s;animation-timing-function:var(--ease)}
 .hero .status{animation-delay:.1s}
 .hero h1{animation-delay:.3s}
@@ -1121,14 +1122,13 @@ body::after{animation:ambB 30s ease-in-out infinite alternate}
 .terminal{animation-delay:1.05s}
 
 /* scroll reveal: slow fade, float up, un-blur */
-.reveal{filter:blur(5px);transition:opacity 1.2s ease,transform 1.3s var(--ease),filter 1.2s ease}
-.reveal.in{filter:blur(0)}
+.reveal{transition:opacity 1s ease,transform 1.1s var(--ease)}
 
 /* grids: children appear one by one */
 .projects.reveal,.socials.reveal,.skills.reveal,.lv-grid.reveal,.lv-steps.reveal,.lv-inc.reveal{opacity:1;transform:none;filter:none;transition:none}
 .reveal:not(.in)>.project,.reveal:not(.in)>.social,.reveal:not(.in)>.skill,.reveal:not(.in)>.lv-card,.reveal:not(.in)>.lv-steps div,.reveal:not(.in)>span{opacity:0}
 .reveal.in>.project,.reveal.in>.social,.reveal.in>.skill,.reveal.in>.lv-card,.reveal.in>div,.reveal.in>span{animation:calmIn 1.2s var(--ease) backwards;animation-delay:calc(var(--i,0)*130ms)}
-@keyframes calmIn{from{opacity:0;transform:translateY(26px) scale(.97);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes calmIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .reveal.in>:nth-child(1){--i:0}
 .reveal.in>:nth-child(2){--i:1}
 .reveal.in>:nth-child(3){--i:2}
@@ -1819,7 +1819,7 @@ const PROJECTS={
   desc:"A luxury online perfume store built for ZAHA Perfume & Care, with an elegant dark-green and gold look, live product search and one-tap ordering on WhatsApp. Delivers across Iraq and the Kurdistan Region.",
   tags:["Client project","HTML","CSS","JavaScript","E-commerce","Branding"],
   feat:["Premium design that matches the brand identity","Live search and product detail pages","One-tap WhatsApp ordering","Smooth animations, fast on every phone"],
-  images:[],hideGallery:true,link:"https://zah4a.github.io/perfume/",linkText:"Visit website"},
+  images:[],hideGallery:true,link:"",linkText:"Visit website"},
  zero:{title:"ZERO GAME",icon:"fa-brands fa-discord",
   desc:"A Discord game bot with an economy system. Members earn coins, compete and keep the server active.",
   tags:["Discord.js","Economy","Systems","Games"],
