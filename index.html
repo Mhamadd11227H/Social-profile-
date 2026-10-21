@@ -1868,7 +1868,7 @@ const PROJECTS={
 (function(){
  const $=id=>document.getElementById(id),modal=$('modal');
  function open(k){
-  const p=PROJECTS[k];if(!p)return;
+  const p=PROJECTS[k];if(!p)return;window.track&&track('project',p.title);
   $('m-title').textContent=p.title;$('m-icon').innerHTML='';$('m-icon').className=p.icon;$('m-desc').textContent=p.desc;
   document.querySelector('#modal .cover').classList.toggle('zaha',p.cover==='zaha');
   document.querySelector('#modal .cover').classList.toggle('sepan',p.cover==='sepan');
@@ -2003,7 +2003,7 @@ LV.samples.forEach(x=>{x.url=x.u?atob(x.u):(x.url||'');delete x.u});
  const priceTxt=p=>p?('نرخ: '+p):'نرخ: ب پەیوەندیێ';
  const orderUrl=t=>LV.whatsapp?'https://wa.me/'+LV.whatsapp+'?text='+encodeURIComponent('سلاڤ، دڤێت ماڵپەڕا «'+t+'» داخواز بکەم'):'#contact';
  function open(i){
-  cur=(i+n)%n;const s=LV.samples[cur];
+  cur=(i+n)%n;const s=LV.samples[cur];window.track&&track('love',s.title||('sample '+(cur+1)));
   PH.replaceChildren();
   if(s.url){const f=document.createElement('iframe');f.title=s.title;f.src=s.url;f.loading='lazy';PH.appendChild(f)}
   else PH.appendChild(mk('div','lv-empty','ئەڤ نموونە دێ زوی بهێتە دانان ♡'));
@@ -2055,5 +2055,6 @@ LV.samples.forEach(x=>{x.url=x.u?atob(x.u):(x.url||'');delete x.u});
  addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u();
 })();
 </script>
+<script src="analytics.js" data-site="portfolio"></script>
 </body>
 </html>

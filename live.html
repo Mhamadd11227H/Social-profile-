@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Live Visitors</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b0b10;color:#f2f2f7;font:15px/1.6 system-ui,Arial,sans-serif;padding:20px;max-width:720px;margin:0 auto}
+h1{font-size:22px;margin:10px 0 4px}.sub{color:#8e8e9a;font-size:13px;margin-bottom:18px}
+.tot{border-radius:24px;padding:26px;text-align:center;background:linear-gradient(145deg,#1b1b2a,#12121a);border:1px solid #2a2a3c;margin-bottom:16px}
+.tot b{display:block;font-size:64px;line-height:1.1}.tot span{color:#8e8e9a}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#34d399;margin-inline-end:6px;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}
+.site{border-radius:20px;padding:18px;background:#14141c;border:1px solid #25253a;margin-bottom:12px}
+.site h2{font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.site h2 em{font-style:normal;background:#34d39922;color:#34d399;padding:2px 14px;border-radius:99px;font-size:15px}
+.site ul{list-style:none;margin-top:10px;direction:ltr;text-align:left}
+.site li{display:flex;justify-content:space-between;color:#b9b9c6;font-size:13.5px;padding:5px 0;border-top:1px solid #1f1f2d}
+.site li b{color:#fff}
+.msg{text-align:center;color:#8e8e9a;padding:30px 0}
+a.btn{display:block;text-align:center;margin-top:16px;padding:13px;border-radius:99px;background:#1b1b2a;border:1px solid #2a2a3c;color:#fff;text-decoration:none}
+</style></head><body>
+<script src="analytics.js" data-site="dashboard" data-silent></script>
+<h1><span class="dot"></span>ئێستا ل سەر وێبسایتان</h1>
+<p class="sub">هەر ٥ چرکەیان خۆ نوی دکەت</p>
+<div class="tot"><b id="total">0</b><span>کەس ئێستا ل سەر وێبسایتێن تە</span></div>
+<div id="list"></div>
+<a class="btn" id="gc" target="_blank" rel="noopener" hidden>ئامارێن تەمام (GoatCounter) ↗</a>
+<script>
+var C=window.ANALYTICS_CFG,list=document.getElementById('list');
+if(C.db.indexOf('YOUR')>=0){list.innerHTML='<p class="msg">هێشتا Firebase نەهاتیە ڕێکخستن (analytics.js)</p>'}
+else{
+  if(C.goatcounter.indexOf('YOUR')<0){var g=document.getElementById('gc');g.href='https://'+C.goatcounter+'.goatcounter.com';g.hidden=false}
+  var NAMES={zaha:'ZAHA',sepan:'SEPAN STYLE',portfolio:'Portfolio (Mohammed)'};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  async function load(){
+    try{
+      var r=await fetch(C.db+'/presence.json'),d=await r.json()||{},now=Date.now(),total=0,html='';
+      Object.keys(d).forEach(function(site){
+        var live=[],views={};
+        Object.keys(d[site]||{}).forEach(function(id){
+          var x=d[site][id];
+          if(x&&now-x.t<45000){live.push(x);views[x.v]=(views[x.v]||0)+1}
+          else if(x&&now-x.t>300000)fetch(C.db+'/presence/'+site+'/'+id+'.json',{method:'DELETE'}).catch(function(){});
+        });
+        if(!live.length)return;
+        total+=live.length;
+        html+='<div class="site"><h2>'+esc(NAMES[site]||site)+'<em>'+live.length+'</em></h2><ul>'+
+          Object.keys(views).sort(function(a,b){return views[b]-views[a]}).map(function(v){return'<li><span>'+esc(v)+'</span><b>'+views[v]+'</b></li>'}).join('')+'</ul></div>';
+      });
+      document.getElementById('total').textContent=total;
+      list.innerHTML=html||'<p class="msg">ئێستا چ کەس ل سەر وێبسایتان نینە</p>';
+    }catch(e){list.innerHTML='<p class="msg">کێشەیەک د پەیوەندیێ دا هەیە</p>'}
+  }
+  load();setInterval(load,5000);
+}
+</script></body></html>
