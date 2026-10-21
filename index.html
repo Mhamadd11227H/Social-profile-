@@ -1094,6 +1094,17 @@ footer{
 .proj-badge{position:absolute;top:18px;right:18px;z-index:1;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.14em;color:#e6c98b;border:1px solid rgba(230,201,139,.35);background:rgba(230,201,139,.07);padding:4px 10px;border-radius:99px}
 .cover.zaha{background:radial-gradient(circle at 20% 0%,rgba(230,201,139,.4),transparent 60%),radial-gradient(circle at 90% 100%,rgba(36,120,98,.55),transparent 55%),#0f1f1a}
 .cover.zaha h3{letter-spacing:.22em}
+/* ===== FEATURED CLIENT PROJECT: SEPAN STYLE ===== */
+.project.featured.sepan{min-height:0;border-color:rgba(217,160,140,.3);background:radial-gradient(circle at 85% 0%,rgba(217,160,140,.16),transparent 55%),linear-gradient(145deg,#141419,#0e0e12)}
+.project.featured.sepan::before{background:radial-gradient(circle,rgba(217,160,140,.22),transparent 70%)}
+.project.featured.sepan:hover{border-color:rgba(217,160,140,.6);box-shadow:0 20px 45px rgba(0,0,0,.25),0 0 40px rgba(217,160,140,.14)}
+.project.featured.sepan .project-icon{border-color:rgba(217,160,140,.35);background:rgba(217,160,140,.08);overflow:hidden}
+.project.featured.sepan .project-icon img{height:44px;width:44px;border-radius:50%;object-fit:cover}
+.project.featured.sepan .proj-badge{color:#e8b3a0;border-color:rgba(217,160,140,.4);background:rgba(217,160,140,.08)}
+.project.featured.sepan .project-arrow{color:#e8b3a0}
+.cover.sepan{background:radial-gradient(circle at 20% 0%,rgba(217,160,140,.45),transparent 60%),radial-gradient(circle at 90% 100%,rgba(183,110,121,.5),transparent 55%),#1a1013}
+.cover.sepan h3{letter-spacing:.22em}
+.cover.sepan .m-logo{border-radius:50%}
 .cover .m-logo{position:absolute;right:22px;top:20px;height:56px;width:auto;opacity:.9}
 
 /* =====================================================
@@ -1528,6 +1539,19 @@ A few projects from my creative lab.
 </div>
 
 
+<!-- SEPAN STYLE (featured client project) -->
+
+<div class="project featured sepan" data-project="sepan" tabindex="0" role="button">
+  <span class="proj-badge">FEATURED · CLIENT WEBSITE</span>
+  <div class="project-icon"><img src="sepan-logo.png" alt=""></div>
+  <div>
+    <h3>SEPAN STYLE</h3>
+    <p>Women's Fashion • Online Store • WhatsApp Orders</p>
+  </div>
+  <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+</div>
+
+
 <!-- ZERO -->
 
 <div class="project" data-project="zero" tabindex="0" role="button">
@@ -1820,6 +1844,11 @@ const PROJECTS={
   tags:["Client project","HTML","CSS","JavaScript","E-commerce","Branding"],
   feat:["Premium design that matches the brand identity","Live search and product detail pages","One-tap WhatsApp ordering","Smooth animations, fast on every phone"],
   images:[],hideGallery:true,link:"https://zah4a.github.io/perfume/",linkText:"Visit website"},
+ sepan:{title:"SEPAN STYLE",cover:"sepan",logo:"sepan-logo.png",icon:"",
+  desc:"An online fashion store for women, built for SEPAN STYLE. Customers browse the collection by category, choose a size and delivery area, and send the order straight to WhatsApp.",
+  tags:["Client project","HTML","CSS","JavaScript","E-commerce","Branding"],
+  feat:["Rose-gold design that matches the brand","Product gallery with sizes and categories","Shopping cart with delivery price by area","One-tap WhatsApp ordering, light and dark theme"],
+  images:[],hideGallery:true,link:"https://sep4n.github.io/sepan-style/",linkText:"Visit website"},
  zero:{title:"ZERO GAME",icon:"fa-brands fa-discord",
   desc:"A Discord game bot with an economy system. Members earn coins, compete and keep the server active.",
   tags:["Discord.js","Economy","Systems","Games"],
@@ -1840,6 +1869,7 @@ const PROJECTS={
   const p=PROJECTS[k];if(!p)return;
   $('m-title').textContent=p.title;$('m-icon').innerHTML='';$('m-icon').className=p.icon;$('m-desc').textContent=p.desc;
   document.querySelector('#modal .cover').classList.toggle('zaha',p.cover==='zaha');
+  document.querySelector('#modal .cover').classList.toggle('sepan',p.cover==='sepan');
   const ol=document.querySelector('#modal .cover .m-logo');if(ol)ol.remove();
   if(p.logo){const im=document.createElement('img');im.className='m-logo';im.alt='';im.src=p.logo;document.querySelector('#modal .cover').appendChild(im)}
   $('m-gal').style.display=p.hideGallery?'none':'';$('m-gal').previousElementSibling.style.display=p.hideGallery?'none':'';
