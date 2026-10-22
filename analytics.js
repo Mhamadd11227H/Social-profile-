@@ -6,7 +6,7 @@
    ========================================================== */
 window.ANALYTICS_CFG = {
   goatcounter: "mohammed55",                      // نموونە: "mohammed" (ژ mohammed.goatcounter.com)
-  db: "https://mohammed-site-5ae97-default-rtdb.firebaseio.com/"     // ناڤنیشانا Realtime Database
+  db: "https://mohammed-site-5ae97-default-rtdb.firebaseio.com"     // ناڤنیشانا Realtime Database
 };
 
 (function () {
