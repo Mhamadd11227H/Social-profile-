@@ -73,6 +73,23 @@ window.ANALYTICS_CFG = {
     });
   }
 
+  /* ---------- ژمارا زیندی بۆ هەمی سەردانکەران (ل سەر لاپەڕێ) ---------- */
+  function showLive() {
+    var pill = document.getElementById("livePill"), num = document.getElementById("liveN");
+    if (!hasDB || !pill || !num) return;
+    fetch(CFG.db + "/presence/" + encodeURIComponent(SITE) + ".json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var now = Date.now(), n = 0;
+        Object.keys(d || {}).forEach(function (k) { if (d[k] && now - d[k].t < 45000) n++; });
+        if (n < 1) n = 1;
+        num.textContent = n;
+        pill.hidden = false;
+      }).catch(function () {});
+  }
+  setTimeout(showLive, 1500);
+  setInterval(showLive, 10000);
+
   ping();
   setInterval(ping, 20000);
   document.addEventListener("visibilitychange", function () { document.hidden ? leave() : ping(); });
