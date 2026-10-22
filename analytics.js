@@ -73,22 +73,36 @@ window.ANALYTICS_CFG = {
     });
   }
 
-  /* ---------- ژمارا زیندی بۆ هەمی سەردانکەران (ل سەر لاپەڕێ) ---------- */
-  function showLive() {
-    var pill = document.getElementById("livePill"), num = document.getElementById("liveN");
-    if (!hasDB || !pill || !num) return;
+  /* ---------- ژمارا زیندی + هەمی سەردانان بۆ هەمی سەردانکەران ---------- */
+  function $id(x) { return document.getElementById(x); }
+  function revealRow() {
+    var on = !$id("liveOn").hidden, v = !$id("liveV").hidden;
+    $id("liveSep").hidden = !(on && v);
+    $id("liveRow").hidden = !(on || v);
+  }
+  function showOnline() {
+    if (!hasDB || !$id("liveRow")) return;
     fetch(CFG.db + "/presence/" + encodeURIComponent(SITE) + ".json")
       .then(function (r) { return r.json(); })
       .then(function (d) {
         var now = Date.now(), n = 0;
         Object.keys(d || {}).forEach(function (k) { if (d[k] && now - d[k].t < 45000) n++; });
-        if (n < 1) n = 1;
-        num.textContent = n;
-        pill.hidden = false;
+        $id("liveN").textContent = Math.max(n, 1);
+        $id("liveOn").hidden = false; revealRow();
       }).catch(function () {});
   }
-  setTimeout(showLive, 1500);
-  setInterval(showLive, 10000);
+  function showViews() {
+    if (!hasGC || !$id("liveRow")) return;
+    fetch("https://" + CFG.goatcounter + ".goatcounter.com/counter/TOTAL.json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.count) { $id("viewsN").textContent = d.count; $id("liveV").hidden = false; revealRow(); }
+      }).catch(function () {});
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(showOnline, 1500); setInterval(showOnline, 10000);
+    setTimeout(showViews, 2500); setInterval(showViews, 60000);
+  });
 
   ping();
   setInterval(ping, 20000);

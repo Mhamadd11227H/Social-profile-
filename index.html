@@ -241,6 +241,13 @@ nav{
     padding:105px 0 90px;
 }
 
+
+.live-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-8px 0 23px 4px;font-family:"Space Mono",monospace;font-size:10px;color:#9a9aab;letter-spacing:.03em;animation:liveIn .8s .4s both}
+.live-row b{color:#e8e8f2;font-weight:700}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:livePulse 1.8s infinite}
+@keyframes livePulse{70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+@keyframes liveIn{from{opacity:0;transform:translateY(8px)}}
+.live-row[hidden]{display:none}
 .status{
     display:inline-flex;
     align-items:center;
@@ -1224,7 +1231,13 @@ M<span>.</span>
 <div class="status">
 <span class="dot"></span>
 AVAILABLE FOR PROJECTS
-<span id="livePill" hidden>&nbsp;·&nbsp;<b id="liveN">1</b>&nbsp;ONLINE NOW</span>
+</div>
+
+<div class="live-row" id="liveRow" hidden>
+<span class="live-dot"></span>
+<span id="liveOn" hidden><b id="liveN">1</b> online now</span>
+<span id="liveSep" hidden>·</span>
+<span id="liveV" hidden><b id="viewsN">0</b> total visits</span>
 </div>
 
 
@@ -2056,6 +2069,6 @@ LV.samples.forEach(x=>{x.url=x.u?atob(x.u):(x.url||'');delete x.u});
  addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u();
 })();
 </script>
-<script src="analytics.js" data-site="portfolio"></script>
+<script src="analytics.js?v=3" data-site="portfolio"></script>
 </body>
 </html>
